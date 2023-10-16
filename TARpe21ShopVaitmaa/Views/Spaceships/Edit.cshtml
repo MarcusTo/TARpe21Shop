@@ -1,5 +1,14 @@
 ﻿@model TARpe21ShopVaitmaa.Models.Spaceship.SpaceshipEditViewModel
 <h1>Add</h1>
+@if (Model.Id.HasValue)
+{
+    <h1>Update</h1>
+}
+else
+{
+    <h1>Add</h1>
+}
+
 <div>
     <form method="post" enctype="multipart/form-data">
         <input asp-for="Id" type="hidden" />
@@ -117,6 +126,8 @@
                 <input asp-for="LastMaintenance" class="form-control" />
             </div>
         </div>
-
+        <input asp-action="add" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Add"/>
+        <a asp-action="edit" asp-controller="spaceships" class="btn btn-primary">Edit</a>
+        <input asp-action="Update" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Update" />
     </form>
 </div>
