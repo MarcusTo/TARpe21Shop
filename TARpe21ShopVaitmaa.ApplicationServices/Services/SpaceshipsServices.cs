@@ -34,7 +34,7 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
                 BuiltAtDate = dto.BuiltAtDate,
                 MaidenLaunch = dto.MaidenLaunch,
                 Manufacturer = dto.Manufacturer,
-                IsSpaceshipPreviouslyOwned = dto.IsSpaceshipPreviouslyOwned,
+                IsSpaceShipPreviouslyOwned  = dto.IsSpaceShipPreviouslyOwned ,
                 FullTripsCount = dto.FullTripsCount,
                 Type = dto.Type,
                 EnginePower = dto.EnginePower,
@@ -63,7 +63,7 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
                 BuiltAtDate = dto.BuiltAtDate,
                 MaidenLaunch = dto.MaidenLaunch,
                 Manufacturer = dto.Manufacturer,
-                IsSpaceshipPreviouslyOwned = dto.IsSpaceshipPreviouslyOwned,
+                IsSpaceShipPreviouslyOwned  = dto.IsSpaceShipPreviouslyOwned ,
                 FullTripsCount = dto.FullTripsCount,
                 Type = dto.Type,
                 EnginePower = dto.EnginePower,
@@ -83,6 +83,7 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
                 .FirstOrDefaultAsync(x => x.Id == id);
             return result;
         }
+
     }
 
 

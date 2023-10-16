@@ -55,7 +55,7 @@ namespace TARpe21ShopVaitmaa.Data.Migrations
                     b.Property<int>("FullTripsCount")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsSpaceshipPreviouslyOwned")
+                    b.Property<bool>("IsSpaceShipPreviouslyOwned ")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("LastMaintenance")

@@ -27,8 +27,8 @@
                     <td>@spaceship.PassengerCount</td>
                     <td>@spaceship.EnginePower</td>
                     <td>
-                        <a asp-action="edit" asp-controller="spaceship" asp-route-id="@spaceship.Id" class="btn btn-primary">Edit</a>
-                        <input asp-action="delete" asp-controller="spaceship" asp-route-id="@spaceship.Id" type="submit" class="btn btn-danger" value="Delete" />
+                        <a asp-action="edit" asp-controller="spaceships" asp-route-id="@spaceship.Id" class="btn btn-primary">Edit</a>
+                        <input asp-action="delete" asp-controller="spaceships" asp-route-id="@spaceship.Id" type="submit" class="btn btn-danger" value="Delete" />
                     </td>
                 </tr>
                 rowNumber++;

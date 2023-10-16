@@ -23,7 +23,7 @@ namespace TARpe21ShopVaitmaa.Data.Migrations
                     BuiltAtDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MaidenLaunch = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsSpaceshipPreviouslyOwned = table.Column<bool>(type: "bit", nullable: false),
+                    IsSpaceShipPreviouslyOwned  = table.Column<bool>(type: "bit", nullable: false),
                     FullTripsCount = table.Column<int>(type: "int", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EnginePower = table.Column<int>(type: "int", nullable: false),
