@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qKvYsVxkdtTObj7BayeBCLOC40Hk2sAknD1Kp1xn86swB921Qb7pR8OF6i+r1/FhM81w4HF0oK5lam+E9f8Xeg==",
+  "dgSpecHash": "EzdPbVcGmri/QpMIdq+2nzHZYb/MQBhOOsvgZDvqSREGJMOt5kLKbVDhM89NdJZCs0zcWroemPrfzB4+Hq2Nfw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\opilane\\source\\repos\\TARpe21ShopToman\\TARpe21ShopVaitmaa.Core\\TARpe21ShopVaitmaa.Core.csproj",
+  "projectFilePath": "C:\\Users\\opilane\\source\\repos\\TARpe21Shop\\TARpe21ShopVaitmaa.Core\\TARpe21ShopVaitmaa.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\opilane\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\opilane\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.22\\microsoft.entityframeworkcore.6.0.22.nupkg.sha512",

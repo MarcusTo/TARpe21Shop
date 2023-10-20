@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/AVUqW2Mm/OtYx6bG8gb1wxceljd8b2Xis9u1JxfPft5frz/s/QIGvI/tgJsUfiwmK4/tZnLbNfwHLUb/W7JdA==",
+  "dgSpecHash": "uBV1UlIbTcyOvumB52GCq60MwfjCnPLL3PeX4b6EyYYLHZmKl1foOOevYOR5OPeUXTbACDtGCY4DXmxUFbFUsQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\opilane\\source\\repos\\TARpe21ShopToman\\TARpe21ShopVaitmaa.Data\\TARpe21ShopVaitmaa.Data.csproj",
+  "projectFilePath": "C:\\Users\\opilane\\source\\repos\\TARpe21Shop\\TARpe21ShopVaitmaa.Data\\TARpe21ShopVaitmaa.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\opilane\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\opilane\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

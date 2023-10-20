@@ -2036,11 +2036,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\opilane\\source\\repos\\TARpe21ShopToman\\TARpe21ShopVaitmaa.Data\\TARpe21ShopVaitmaa.Data.csproj",
+      "projectUniqueName": "C:\\Users\\opilane\\source\\repos\\TARpe21Shop\\TARpe21ShopVaitmaa.Data\\TARpe21ShopVaitmaa.Data.csproj",
       "projectName": "TARpe21ShopVaitmaa.Data",
-      "projectPath": "C:\\Users\\opilane\\source\\repos\\TARpe21ShopToman\\TARpe21ShopVaitmaa.Data\\TARpe21ShopVaitmaa.Data.csproj",
+      "projectPath": "C:\\Users\\opilane\\source\\repos\\TARpe21Shop\\TARpe21ShopVaitmaa.Data\\TARpe21ShopVaitmaa.Data.csproj",
       "packagesPath": "C:\\Users\\opilane\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\opilane\\source\\repos\\TARpe21ShopToman\\TARpe21ShopVaitmaa.Data\\obj\\",
+      "outputPath": "C:\\Users\\opilane\\source\\repos\\TARpe21Shop\\TARpe21ShopVaitmaa.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2062,8 +2062,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\opilane\\source\\repos\\TARpe21ShopToman\\TARpe21ShopVaitmaa.Core\\TARpe21ShopVaitmaa.Core.csproj": {
-              "projectPath": "C:\\Users\\opilane\\source\\repos\\TARpe21ShopToman\\TARpe21ShopVaitmaa.Core\\TARpe21ShopVaitmaa.Core.csproj"
+            "C:\\Users\\opilane\\source\\repos\\TARpe21Shop\\TARpe21ShopVaitmaa.Core\\TARpe21ShopVaitmaa.Core.csproj": {
+              "projectPath": "C:\\Users\\opilane\\source\\repos\\TARpe21Shop\\TARpe21ShopVaitmaa.Core\\TARpe21ShopVaitmaa.Core.csproj"
             }
           }
         }

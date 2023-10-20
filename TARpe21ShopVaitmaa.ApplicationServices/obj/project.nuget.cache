@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sx8wvh4P74Y+XhrXsZZzRmnHVzmdeEfAfDPAYnAp3LKekr05Tvr7U5E/qvBZJHfxIFdt1CbMLOp2DMjXoTMd3Q==",
+  "dgSpecHash": "FNNvolbM6vOZSBcM+q87vVLG9Hnbw0P1ccDXL6tjVKIXG1/LDgM5AijW1yG8Iz06sNstkF8XegrIg3pbmV3A1w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\opilane\\source\\repos\\TARpe21ShopToman\\TARpe21ShopVaitmaa.ApplicationServices\\TARpe21ShopVaitmaa.ApplicationServices.csproj",
+  "projectFilePath": "C:\\Users\\opilane\\source\\repos\\TARpe21Shop\\TARpe21ShopVaitmaa.ApplicationServices\\TARpe21ShopVaitmaa.ApplicationServices.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\opilane\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\opilane\\.nuget\\packages\\microsoft.aspnet.mvc\\5.2.9\\microsoft.aspnet.mvc.5.2.9.nupkg.sha512",
