@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using TARpe21ShopVaitmaa.Core.Domain.Spaceship;
 
-namespace TARpe21ShopVaitmaa.Core.Domain.Spaceship
+namespace TARpe21ShopVaitmaa.Models.Spaceship
 {
-    public class Spaceship
+    public class SpaceshipCreateUpdateViewModel
     {
-        public readonly bool IsSpaceshipPreviouslyOwned;
-
-        [Key]
         public Guid? Id { get; set; } // globally unique identifier
         public string Name { get; set; } // ship name
         public string Description { get; set; } // ship description
@@ -23,7 +16,7 @@ namespace TARpe21ShopVaitmaa.Core.Domain.Spaceship
         public DateTime BuiltAtDate { get; set; } // the date this ship was built at
         public DateTime MaidenLaunch { get; set; } // the date that this ship did its first voyage
         public string Manufacturer { get; set; } // company who manufactured the spaceship
-        public bool IsSpaceShipPreviouslyOwned  { get; set; } // denotes if the ship has been previously owned or not, tldr; second hand identifier.
+        public bool IsSpaceshipPreviouslyOwned { get; set; } // denotes if the ship has been previously owned or not, tldr; second hand identifier.
         public int FullTripsCount { get; set; } // How many round trips has the ship taken
         public string Type { get; set; } // bodytype, build type
         public int EnginePower { get; set; } // engine power in kilowatt
@@ -36,14 +29,9 @@ namespace TARpe21ShopVaitmaa.Core.Domain.Spaceship
 
         public DateTime CreatedAt { get; set; } // when the entry was created
         public DateTime ModifiedAt { get; set; } // when the entry has been modified last
+
+
+
     }
 
-    //public class Dimension
-    //{
-    //    [Key]
-    //    public int DimensionID { get; set; }
-    //    public int Width { get; set; }
-    //    public int Height { get; set; }
-    //    public int Depth { get; set; }
-    //}
 }
