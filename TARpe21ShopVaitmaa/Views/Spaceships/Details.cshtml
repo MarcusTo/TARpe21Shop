@@ -1,5 +1,7 @@
 ﻿@model TARpe21ShopVaitmaa.Models.Spaceship.SpaceshipDetailsViewModel
-
+@{
+    string displaystring = "";
+}
 
 <h1>Details</h1>
 
@@ -65,7 +67,15 @@
 
         <div class="form-group row">
             <label asp-for="IsSpaceshipPreviouslyOwned" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.IsSpaceshipPreviouslyOwned)
+            @if (Model.IsSpaceshipPreviouslyOwned)
+            {
+                displaystring = "Yes, it is preowned";
+            }
+            else
+            {
+                displaystring = "No, the spaceship is new.";
+            }
+            @(displaystring)
         </div>
 
         <div class="form-group row">
