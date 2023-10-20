@@ -25,3 +25,16 @@ C:\Users\opilane\source\repos\TARpe21ShopToman\TARpe21ShopVaitmaa.Core\obj\Debug
 C:\Users\opilane\source\repos\TARpe21ShopToman\TARpe21ShopVaitmaa.Core\obj\Debug\net6.0\TARpe21ShopVaitmaa.Core.pdb
 C:\Users\opilane\source\repos\TARpe21ShopToman\TARpe21ShopVaitmaa.Core\obj\Debug\net6.0\TARpe21ShopVaitmaa.Core.genruntimeconfig.cache
 C:\Users\opilane\source\repos\TARpe21ShopToman\TARpe21ShopVaitmaa.Core\obj\Debug\net6.0\ref\TARpe21ShopVaitmaa.Core.dll
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.Core\bin\Debug\net6.0\TARpe21ShopVaitmaa.Core.deps.json
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.Core\bin\Debug\net6.0\TARpe21ShopVaitmaa.Core.runtimeconfig.json
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.Core\bin\Debug\net6.0\TARpe21ShopVaitmaa.Core.dll
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.Core\bin\Debug\net6.0\TARpe21ShopVaitmaa.Core.pdb
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.Core\obj\Debug\net6.0\TARpe21ShopVaitmaa.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.Core\obj\Debug\net6.0\TARpe21ShopVaitmaa.Core.AssemblyInfoInputs.cache
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.Core\obj\Debug\net6.0\TARpe21ShopVaitmaa.Core.AssemblyInfo.cs
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.Core\obj\Debug\net6.0\TARpe21ShopVaitmaa.Core.csproj.CoreCompileInputs.cache
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.Core\obj\Debug\net6.0\TARpe21ShopVaitmaa.Core.dll
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.Core\obj\Debug\net6.0\refint\TARpe21ShopVaitmaa.Core.dll
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.Core\obj\Debug\net6.0\TARpe21ShopVaitmaa.Core.pdb
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.Core\obj\Debug\net6.0\TARpe21ShopVaitmaa.Core.genruntimeconfig.cache
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.Core\obj\Debug\net6.0\ref\TARpe21ShopVaitmaa.Core.dll

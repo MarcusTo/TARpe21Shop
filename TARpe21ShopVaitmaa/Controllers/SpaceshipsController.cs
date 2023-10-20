@@ -157,7 +157,7 @@ namespace TARpe21ShopVaitmaa.Controllers
                 BuiltAtDate = spaceship.BuiltAtDate,
                 MaidenLaunch = spaceship.MaidenLaunch,
                 Manufacturer = spaceship.Manufacturer,
-                IsSpaceshipPreviouslyOwned = spaceship.IsSpaceshipPreviouslyOwned,
+                IsSpaceshipPreviouslyOwned = spaceship.IsSpaceShipPreviouslyOwned,
                 FullTripsCount = spaceship.FullTripsCount,
                 Type = spaceship.Type,
                 EnginePower = spaceship.EnginePower,
@@ -169,41 +169,7 @@ namespace TARpe21ShopVaitmaa.Controllers
             };
             return View(vm);
         }
-        [HttpGet]
-        [HttpGet]
-        public async Task<IActionResult> Details(Guid Id)
-        {
-            var spaceship = await _spaceshipsServices.GetAsync(Id);
-
-            if (spaceship == null)
-            {
-                return NotFound();
-            }
-
-            var vm = new SpaceshipDetailsViewModel()
-            {
-                Id = spaceship.Id,
-                Name = spaceship.Name,
-                Description = spaceship.Description,
-                PassengerCount = spaceship.PassengerCount,
-                CrewCount = spaceship.CrewCount,
-                CargoWeight = spaceship.CargoWeight,
-                MaxSpeedInVaccuum = spaceship.MaxSpeedInVaccuum,
-                BuiltAtDate = spaceship.BuiltAtDate,
-                MaidenLaunch = spaceship.MaidenLaunch,
-                Manufacturer = spaceship.Manufacturer,
-                IsSpaceshipPreviouslyOwned = spaceship.IsSpaceshipPreviouslyOwned,
-                FullTripsCount = spaceship.FullTripsCount,
-                Type = spaceship.Type,
-                EnginePower = spaceship.EnginePower,
-                FuelConsumptionPerDay = spaceship.FuelConsumptionPerDay,
-                MaintenanceCount = spaceship.MaintenanceCount,
-                LastMaintenance = spaceship.LastMaintenance,
-                CreatedAt = spaceship.CreatedAt,
-                ModifiedAt = spaceship.ModifiedAt
-            };
-            return View(vm);
-        }
+       
         [HttpGet]
         public async Task<IActionResult> Delete(Guid Id)
         {
@@ -225,7 +191,7 @@ namespace TARpe21ShopVaitmaa.Controllers
                 BuiltAtDate = spaceship.BuiltAtDate,
                 MaidenLaunch = spaceship.MaidenLaunch,
                 Manufacturer = spaceship.Manufacturer,
-                IsSpaceshipPreviouslyOwned = spaceship.IsSpaceshipPreviouslyOwned,
+                IsSpaceshipPreviouslyOwned = spaceship.IsSpaceShipPreviouslyOwned,
                 FullTripsCount = spaceship.FullTripsCount,
                 Type = spaceship.Type,
                 EnginePower = spaceship.EnginePower,

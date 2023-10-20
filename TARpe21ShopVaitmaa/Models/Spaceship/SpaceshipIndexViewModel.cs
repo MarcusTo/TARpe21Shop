@@ -3,7 +3,7 @@ using TARpe21ShopVaitmaa.Core.Domain.Spaceship;
 
 namespace TARpe21ShopVaitmaa.Models.Spaceship
 {
-    public class SpaceShipIndexViewModel
+    public class SpaceshipIndexViewModel
     {
         [Key]
         public Guid? Id { get; set; } // globally unique identifier
