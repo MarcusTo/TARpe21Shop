@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using TARpe21ShopVaitmaa.Core.Domain.Spaceship;
+using TARpe21ShopVaitmaa.Core.Domain;
 
 namespace TARpe21ShopVaitmaa.Core.Dto
 {
@@ -31,11 +33,17 @@ namespace TARpe21ShopVaitmaa.Core.Dto
         public int MaintenanceCount { get; set; } // how many maintenance sessions have been conducted on this ship
         public DateTime LastMaintenance { get; set; } // when was the last maintenance performed
 
+        public List<IFormFile> Files { get; set; }  // Files that are to be added to this spaceship
+        public int MyProperty { get;set; }
+        public IEnumerable<FileToDatabaseDto> Image { get; set; } = new List<FileToDatabaseDto>(); //Images themselves that are added
 
         // only in database
 
         public DateTime CreatedAt { get; set; } // when the entry was created
         public DateTime ModifiedAt { get; set; } // when the entry has been modified last
+
+
+
         
     }
 }

@@ -4,46 +4,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TARpe21ShopVaitmaa.Core.Domain.Spaceship;
+using TARpe21ShopVaitmaa.Core.Domain;
 using TARpe21ShopVaitmaa.Core.Dto;
 using TARpe21ShopVaitmaa.Core.ServiceInterface;
 using TARpe21ShopVaitmaa.Data;
+using TARpe21ShopVaitmaa.Data.Migrations;
 
 namespace TARpe21ShopVaitmaa.ApplicationServices.Services
 {
     public class SpaceshipsServices : ISpaceshipsServices
     {
         private readonly TARpe21ShopVaitmaaContext _context;
-        public SpaceshipsServices(TARpe21ShopVaitmaaContext context)
+        private readonly IFileServices _files;
+        public SpaceshipsServices(TARpe21ShopVaitmaaContext context, IFileServices files)
         {
             _context = context;
+            _files = files;
         }
 
         public async Task<Spaceship> Create(SpaceshipDto dto)
         {
-            var domain = new Spaceship()
+            Spaceship spaceship = new Spaceship();
+            FileToDatabase file = new FileToDatabase();
+
+            spaceship.Id = Guid.NewGuid();
+            spaceship.Name = dto.Name;
+            spaceship.Description = dto.Description;
+            //Dimensions = dto.Dimensions,
+            spaceship.PassengerCount = dto.PassengerCount;
+            spaceship.CrewCount = dto.CrewCount;
+            spaceship.CargoWeight = dto.CargoWeight;
+            spaceship.MaxSpeedInVaccuum = dto.MaxSpeedInVaccuum;
+            spaceship.BuiltAtDate = dto.BuiltAtDate;
+            spaceship.MaidenLaunch = dto.MaidenLaunch;
+            spaceship.Manufacturer = dto.Manufacturer;
+            spaceship.IsSpaceShipPreviouslyOwned = dto.IsSpaceShipPreviouslyOwned;
+            spaceship.FullTripsCount = dto.FullTripsCount;
+            spaceship.Type = dto.Type;
+            spaceship.EnginePower = dto.EnginePower;
+            spaceship.FuelConsumptionPerDay = dto.FuelConsumptionPerDay;
+            spaceship.MaintenanceCount = dto.MaintenanceCount;
+            spaceship.LastMaintenance = dto.LastMaintenance;
+            spaceship.CreatedAt = DateTime.Now;
+            spaceship.ModifiedAt = DateTime.Now;
+            
+            if(dto.Files != null)
             {
-                Name = dto.Name,
-                Description = dto.Description,
-                //Dimensions = dto.Dimensions,
-                PassengerCount = dto.PassengerCount,
-                CrewCount = dto.CrewCount,
-                CargoWeight = dto.CargoWeight,
-                MaxSpeedInVaccuum = dto.MaxSpeedInVaccuum,
-                BuiltAtDate = dto.BuiltAtDate,
-                MaidenLaunch = dto.MaidenLaunch,
-                Manufacturer = dto.Manufacturer,
-                IsSpaceShipPreviouslyOwned = dto.IsSpaceShipPreviouslyOwned,
-                FullTripsCount = dto.FullTripsCount,
-                Type = dto.Type,
-                EnginePower = dto.EnginePower,
-                FuelConsumptionPerDay = dto.FuelConsumptionPerDay,
-                MaintenanceCount = dto.MaintenanceCount,
-                LastMaintenance = dto.LastMaintenance,
-                CreatedAt = dto.CreatedAt,
-                ModifiedAt = dto.ModifiedAt,
-            };
-            await _context.Spaceships.AddAsync(domain);
+                _files.UploadFilesToDatabase(dto, spaceship);
+            }
+            await _context.Spaceships.AddAsync(spaceship);
             await _context.SaveChangesAsync();
             return domain;
         }

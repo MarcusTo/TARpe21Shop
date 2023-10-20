@@ -63,7 +63,9 @@ namespace TARpe21ShopVaitmaa.Controllers
                 MaintenanceCount = vm.MaintenanceCount,
                 LastMaintenance = vm.LastMaintenance,
                 CreatedAt = vm.CreatedAt,
-                ModifiedAt = vm.ModifiedAt
+                ModifiedAt = vm.ModifiedAt,
+                Files = vm.Files,
+                Image = vm.Image.Select (x => new FileToDatabaseDto),
             };
             var result = await _spaceshipsServices.Create(dto);
             if (result == null)

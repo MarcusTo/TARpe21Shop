@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TARpe21ShopVaitmaa.Core.Domain.Spaceship;
+using TARpe21ShopVaitmaa.Core.Domain;
 using TARpe21ShopVaitmaa.Core.Dto;
 
 namespace TARpe21ShopVaitmaa.Core.ServiceInterface

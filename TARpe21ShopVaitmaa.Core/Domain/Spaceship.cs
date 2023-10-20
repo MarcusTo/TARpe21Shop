@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TARpe21ShopVaitmaa.Core.Domain.Spaceship
+namespace TARpe21ShopVaitmaa.Core.Domain
 {
     public class Spaceship
     {
@@ -23,7 +23,7 @@ namespace TARpe21ShopVaitmaa.Core.Domain.Spaceship
         public DateTime BuiltAtDate { get; set; } // the date this ship was built at
         public DateTime MaidenLaunch { get; set; } // the date that this ship did its first voyage
         public string Manufacturer { get; set; } // company who manufactured the spaceship
-        public bool IsSpaceShipPreviouslyOwned  { get; set; } // denotes if the ship has been previously owned or not, tldr; second hand identifier.
+        public bool IsSpaceShipPreviouslyOwned { get; set; } // denotes if the ship has been previously owned or not, tldr; second hand identifier.
         public int FullTripsCount { get; set; } // How many round trips has the ship taken
         public string Type { get; set; } // bodytype, build type
         public int EnginePower { get; set; } // engine power in kilowatt
