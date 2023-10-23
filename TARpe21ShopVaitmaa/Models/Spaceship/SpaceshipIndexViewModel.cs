@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TARpe21ShopVaitmaa.Core.Domain.Spaceship;
-
 namespace TARpe21ShopVaitmaa.Models.Spaceship
 {
     public class SpaceshipIndexViewModel

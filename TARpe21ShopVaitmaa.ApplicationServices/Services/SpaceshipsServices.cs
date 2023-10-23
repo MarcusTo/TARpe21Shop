@@ -15,8 +15,8 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
     public class SpaceshipsServices : ISpaceshipsServices
     {
         private readonly TARpe21ShopVaitmaaContext _context;
-        private readonly IFileServices _files;
-        public SpaceshipsServices(TARpe21ShopVaitmaaContext context, IFileServices files)
+        private readonly IFilesServices _files;
+        public SpaceshipsServices(TARpe21ShopVaitmaaContext context, IFilesServices files)
         {
             _context = context;
             _files = files;
@@ -54,7 +54,7 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
             }
             await _context.Spaceships.AddAsync(spaceship);
             await _context.SaveChangesAsync();
-            return domain;
+            return spaceship;
         }
         public async Task<Spaceship> Update(SpaceshipDto dto)
         {

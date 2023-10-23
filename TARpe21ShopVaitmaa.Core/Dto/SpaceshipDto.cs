@@ -34,7 +34,6 @@ namespace TARpe21ShopVaitmaa.Core.Dto
         public DateTime LastMaintenance { get; set; } // when was the last maintenance performed
 
         public List<IFormFile> Files { get; set; }  // Files that are to be added to this spaceship
-        public int MyProperty { get;set; }
         public IEnumerable<FileToDatabaseDto> Image { get; set; } = new List<FileToDatabaseDto>(); //Images themselves that are added
 
         // only in database

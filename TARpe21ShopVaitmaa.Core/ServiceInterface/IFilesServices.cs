@@ -3,7 +3,7 @@ using TARpe21ShopVaitmaa.Core.Dto;
 
 namespace TARpe21ShopVaitmaa.ApplicationServices.Services
 {
-    public interface IFileServices
+    public interface IFilesServices
     {
 
         void UploadFilesToDatabase(SpaceshipDto dto, Spaceship domain);

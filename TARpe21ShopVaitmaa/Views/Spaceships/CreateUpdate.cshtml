@@ -1,4 +1,4 @@
-﻿﻿@model TARpe21ShopVaitmaa.Models.Spaceship.SpaceshipCreateUpdateViewModel
+﻿@model TARpe21ShopVaitmaa.Models.Spaceship.SpaceshipCreateUpdateViewModel
 
 @if (Model.Id.HasValue)
 {
@@ -18,14 +18,14 @@ else
         <div class="form-group row">
             <label asp-for="Name" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
-                <input asp-for="Name" class="form-control"/>
+                <input asp-for="Name" class="form-control" />
             </div>
         </div>
 
         <div class="form-group row">
             <label asp-for="Type" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
-                <input asp-for="Type" class="form-control"/>
+                <input asp-for="Type" class="form-control" />
             </div>
         </div>
 
@@ -126,17 +126,55 @@ else
                 <input asp-for="LastMaintenance" class="form-control" />
             </div>
         </div>
+
+        <hr/>
+
+        <div class="form-group row">
+            <label asp-for="Files" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-5">
+                <div class="custom-file">
+                    <input class="form-control custom-file-input" asp-for="Files" multiple type="file" />
+                    <label class="custom-file-label">Choose File...</label>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+        @foreach (var images in Model.Image)
+        {
+            <partial name ="_Images" model="images"/>
+            
+        }
+
         @if (Model.Id.HasValue)
         {
             <input asp-action="Update" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Update" />
-            
+
         }
         else
         {
             <input asp-action="Create" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Create" />
         }
         <a asp-action="Index" class="btn btn-primary">Cancel</a>
-       
-        
+
+
     </form>
 </div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            var fileLabel = $(this).next('.custom-file-label');
+            var files = $(this)[0].files;
+            if (files.length > 1) {
+                fileLabel.html(files.length + 'files selected')
+            }
+            else if (files.length == 1) {
+                fileLabel.html(files[0].name);
+            }
+        });
+    </script>
+}
