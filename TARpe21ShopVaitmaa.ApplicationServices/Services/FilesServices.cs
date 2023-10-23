@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations.Internal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,24 +6,22 @@ using System.Threading.Tasks;
 using TARpe21ShopVaitmaa.Core.Domain;
 using TARpe21ShopVaitmaa.Core.Dto;
 using TARpe21ShopVaitmaa.Data;
-using TARpe21ShopVaitmaa.Data.Migrations;
 
 namespace TARpe21ShopVaitmaa.ApplicationServices.Services
 {
-    public class FileServices : IFileServices
+    public class FilesServices : IFilesServices
     {
         private readonly TARpe21ShopVaitmaaContext _context;
-
-        public FileServices(
-            TARpe21ShopVaitmaaContext context
+        public FilesServices
+            (
+                TARpe21ShopVaitmaaContext context
             )
         {
             _context = context;
         }
-
-        public void UploadFilesToDatabase(SpaceshipDto dto, spaceship domain)
+        public void UploadFilesToDatabase(SpaceshipDto dto, Spaceship domain)
         {
-            if ( dto.Files  != null && dto.Files.Count > 0) 
+            if (dto.Files != null && dto.Files.Count > 0)
             {
                 foreach (var photo in dto.Files)
                 {
@@ -32,7 +29,7 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
                     {
                         FileToDatabase files = new FileToDatabase()
                         {
-                            IDictionary = Guid.NewGuid(),
+                            Id = Guid.NewGuid(),
                             ImageTitle = photo.FileName,
                             SpaceshipId = domain.Id,
                         };
@@ -42,9 +39,7 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
 
                         _context.FilesToDatabase.Add(files);
                     }
-
                 }
-            
             }
         }
     }
