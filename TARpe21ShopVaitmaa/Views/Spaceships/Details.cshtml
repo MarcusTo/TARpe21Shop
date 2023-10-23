@@ -112,6 +112,11 @@
             <label asp-for="ModifiedAt" class="col-sm-2 col-form-label"></label>
             @Html.DisplayFor(model => model.ModifiedAt)
         </div>
+
+        @foreach (var images in Model.Image)
+        {
+            <partial name="_Images"></partial>
+        }
     </dl>
     <a asp-action="Index" asp-controller="spaceships" class="btn btn-danger">Cancel</a>
 

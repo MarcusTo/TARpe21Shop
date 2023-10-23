@@ -24,6 +24,8 @@ namespace TARpe21ShopVaitmaa.Models.Spaceship
         public int MaintenanceCount { get; set; } // how many maintenance sessions have been conducted on this ship
         public DateTime LastMaintenance { get; set; } // when was the last maintenance performed
 
+        public List<ImageViewModel> Image { get; set; } = new List<ImageViewModel>();
+
 
         // only in database
 
