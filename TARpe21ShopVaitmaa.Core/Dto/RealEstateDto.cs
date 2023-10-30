@@ -37,7 +37,7 @@ namespace TARpe21ShopVaitmaa.Core.Dto
         {
             get { return Price / SquareMeters; }
         }
-        public EstateType EstateType { get; set; } //what type of an estate is this
+        public EstateType Type { get; set; } //what type of an estate is this
 
         public bool IsPropertyNewDevelopment { get; set; } //shows if the estate being sold is a newly developed housing unit, or an older existing one
         public bool IsPropertySold { get; set; } //shows if the property has been sold already 
