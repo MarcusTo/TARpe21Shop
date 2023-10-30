@@ -12,5 +12,6 @@ namespace TARpe21ShopVaitmaa.Core.ServiceInterface
     {
         Task<RealEstate> GetAsync();
         Task<RealEstate> Create(RealEstateDto dto);
+        Task<RealEstate> Delete(Guid id);
     }
 }

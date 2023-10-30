@@ -61,5 +61,33 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
             }
             return null;
         }
+        public void FilesToApi(RealEstateDto dto, RealEstate realEstate)
+        {
+            if (dto.Files != null && dto.Files.Count > 0)
+            {
+                if (!Directory.Exists(_webHost.webRootPath  + "\\multipleFileUpload\\"))
+                {
+                    Directory.CreateDirectory(_webHost.WebRootPath + "\\multipleFileUpload\\");
+                }
+                foreach (var image in dto.Files)
+                {
+                    string uploadsFolder = Path.Combine(_webHost.WebRootPath, "multipleFileUpload");
+                    string uniqueFileName = Guid.NewGuid().ToString() +"_"+ image.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    using(var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        image.CopyTo(fileStream);
+                        FileToApi path = new FileToApi
+                        {
+                            Id = Guid.NewGuid(),
+                            ExistingFilePath = filePath,
+                            RealEstate = realEstate.Id,
+                        };
+                        _context.FilesToApi.AddAsync(path);
+                    }
+                }
+
+            }
+        }
     }
 }

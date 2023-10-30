@@ -1,8 +1,12 @@
 ﻿namespace TARpe21ShopVaitmaa.Models.RealEstate
 {
+    public enum EstateType
+    {
+        House, Apartment, Room, Land, ParkingSpace, TimeShare, Garage, StorageUnit, Mansion, Castle, Station
+    }
     public class RealEstateCreateUpdateViewModel
     {
-        public Guid Id { get; set; } // unique id
+        public Guid? Id { get; set; } // unique id
         public string Address { get; set; } // street name, house number, flat number.  "Tulika 14-6"
         public string? City { get; set; } //city where realestate is, city is optional incase the 
         public string Country { get; set; } //what country estate is in
@@ -30,11 +34,8 @@
 
         public bool IsPropertyNewDevelopment { get; set; } //shows if the estate being sold is a newly developed housing unit, or an older existing one
         public bool IsPropertySold { get; set; } //shows if the property has been sold already 
-
         //database only properties
-
         public DateTime CreatedAt { get; set; } //when entry was added to the database
         public DateTime ModifiedAt { get; set; } //when wwas entry modified in the database
     }
-
 }

@@ -36,23 +36,22 @@ namespace TARpe21ShopVaitmaa.Controllers
                 });
             return View(result);
         }
-
         [HttpGet]
         public IActionResult Create()
         {
             RealEstateCreateUpdateViewModel vm = new();
             return View("CreateUpdate", vm);
         }
-
         [HttpPost]
         public async Task<IActionResult> Create(RealEstateCreateUpdateViewModel vm)
         {
             var dto = new RealEstateDto()
             {
-                Id = vm.Id,
+                Id = Guid.NewGuid(),
                 Address = vm.Address,
                 City = vm.City,
                 Country = vm.Country,
+                County = vm.County,
                 SquareMeters = vm.SquareMeters,
                 Price = vm.Price,
                 PostalCode = vm.PostalCode,
@@ -68,9 +67,38 @@ namespace TARpe21ShopVaitmaa.Controllers
                 DoesHaveParkingSpace = vm.DoesHaveParkingSpace,
                 DoesHavePowerGridConnection = vm.DoesHavePowerGridConnection,
                 DoesHaveWaterGridConnection = vm.DoesHaveWaterGridConnection,
-                Type = vm.Type
+                Type = vm.Type,
+                IsPropertyNewDevelopment = vm.IsPropertyNewDevelopment,
+                IsPropertySold = vm.IsPropertySold,
+                CreatedAt = DateTime.Now,
+                ModifiedAt = DateTime.Now,
+                Files = vm.Files,
+                FilesToApiDtos = vm.FilesToApiViewModels
+                .Select(x => new FileToApiDto
+                {
+                    Id = x.ImageId,
+                    ExistingFilePath = x.FilePath,
+                    RealEstateId = x.RealEstateId, 
+
+                }).ToArray
             };
-            return View(dto);
+            var result = await _realEstates.Create(dto);
+            if (result == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction("Index", vm);
+        }
+        [HttpGet]
+        public async Task<IActionResult>Update(Guid id)
+        {
+            var realEstate = await _realEstatesServices.GetAsync(id);
+            if (realEstate == null)
+            {
+                return NotFound();
+            }
+            var vm = new RealEstateCreateUpdateViewModel();
+            vm.Id = id;
         }
     }
 }
