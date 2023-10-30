@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,6 @@ using System.Threading.Tasks;
 using TARpe21ShopVaitmaa.Core.Domain;
 using TARpe21ShopVaitmaa.Core.Dto;
 using TARpe21ShopVaitmaa.Data;
-
 namespace TARpe21ShopVaitmaa.ApplicationServices.Services
 {
     public class FilesServices : IFilesServices
@@ -33,14 +33,33 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
                             ImageTitle = photo.FileName,
                             SpaceshipId = domain.Id,
                         };
-
                         photo.CopyTo(target);
                         files.ImageData = target.ToArray();
-
                         _context.FilesToDatabase.Add(files);
                     }
                 }
             }
+        }
+        public async Task<FileToDatabase> RemoveImage(FileToDatabaseDto dto)
+        {
+            var image = await _context.FilesToDatabase
+                .Where(x => x.Id == dto.ID)
+                .FirstOrDefaultAsync();
+            _context.FilesToDatabase.Remove(image);
+            await _context.SaveChangesAsync();
+            return image;
+        }
+        public async Task<List<FileToDatabase>> RemoveImagesFromDatabase(FileToDatabaseDto[] dtos)
+        {
+            foreach (var dto in dtos)
+            {
+                var image = await _context.FilesToDatabase
+                    .Where(x => x.Id == dto.ID)
+                    .FirstOrDefaultAsync();
+                _context.FilesToDatabase.Remove(image);
+                await _context.SaveChangesAsync();
+            }
+            return null;
         }
     }
 }

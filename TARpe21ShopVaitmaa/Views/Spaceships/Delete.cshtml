@@ -112,6 +112,12 @@
             <label asp-for="ModifiedAt" class="col-sm-2 col-form-label"></label>
             @Html.DisplayFor(model => model.ModifiedAt)
         </div>
+
+        @foreach (var images in Model.Image)
+        {
+            <partial name="_Images" model="images" />
+        }
+
     </dl>
     <form asp-action="DeleteConfirmation">
         <input type="hidden" asp-for="Id" />

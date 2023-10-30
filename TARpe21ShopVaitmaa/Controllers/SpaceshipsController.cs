@@ -1,24 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TARpe21ShopVaitmaa.ApplicationServices.Services;
 using TARpe21ShopVaitmaa.Core.Dto;
 using TARpe21ShopVaitmaa.Core.ServiceInterface;
 using TARpe21ShopVaitmaa.Data;
 using TARpe21ShopVaitmaa.Models;
 using TARpe21ShopVaitmaa.Models.Spaceship;
-
 namespace TARpe21ShopVaitmaa.Controllers
 {
     public class SpaceshipsController : Controller
     {
         private readonly TARpe21ShopVaitmaaContext _context;
         private readonly ISpaceshipsServices _spaceshipsServices;
+        private readonly IFilesServices _filesServices;
         public SpaceshipsController
             (
             TARpe21ShopVaitmaaContext context,
-            ISpaceshipsServices spaceshipsServices
+            ISpaceshipsServices spaceshipsServices,
+            IFilesServices filesServices
             )
         {
             _context = context;
             _spaceshipsServices = spaceshipsServices;
+            _filesServices = filesServices;
         }
         public IActionResult Index()
         {
@@ -67,7 +71,7 @@ namespace TARpe21ShopVaitmaa.Controllers
                 Files = vm.Files,
                 Image = vm.Image.Select(x => new FileToDatabaseDto
                 {
-                    Id = x.Id,
+                    ID = x.ImageId,
                     ImageData = x.ImageData,
                     ImageTitle = x.ImageTitle,
                     SpaceshipId = x.SpaceshipId,
@@ -98,30 +102,29 @@ namespace TARpe21ShopVaitmaa.Controllers
                     ImageTitle = y.ImageTitle,
                     Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
                 }).ToArrayAsync();
-                var vm = new SpaceshipCreateUpdateViewModel()
 
+            var vm = new SpaceshipCreateUpdateViewModel();
 
-                vm.Id = spaceship.Id;
-                vm.Name = spaceship.Name;
-                vm.Description = spaceship.Description;
-                vm.PassengerCount = spaceship.PassengerCount;
-                vm.CrewCount = spaceship.CrewCount;
-                vm.CargoWeight = spaceship.CargoWeight;
-                vm.MaxSpeedInVaccuum = spaceship.MaxSpeedInVaccuum;
-                vm.BuiltAtDate = spaceship.BuiltAtDate;
-                vm.MaidenLaunch = spaceship.MaidenLaunch;
-                vm.Manufacturer = spaceship.Manufacturer;
-                vm.IsSpaceshipPreviouslyOwned = spaceship.IsSpaceshipPreviouslyOwned;
-                vm.FullTripsCount = spaceship.FullTripsCount;
-                vm.Type = spaceship.Type;
-                vm.EnginePower = spaceship.EnginePower;
-                vm.FuelConsumptionPerDay = spaceship.FuelConsumptionPerDay;
-                vm.MaintenanceCount = spaceship.MaintenanceCount;
-                vm.LastMaintenance = spaceship.LastMaintenance;
-                vm.CreatedAt = spaceship.CreatedAt;
-                vm.ModifiedAt = spaceship.ModifiedAt;
-                vm.Image.AddRange(photos);
-
+            vm.Id = spaceship.Id;
+            vm.Name = spaceship.Name;
+            vm.Description = spaceship.Description;
+            vm.PassengerCount = spaceship.PassengerCount;
+            vm.CrewCount = spaceship.CrewCount;
+            vm.CargoWeight = spaceship.CargoWeight;
+            vm.MaxSpeedInVaccuum = spaceship.MaxSpeedInVaccuum;
+            vm.BuiltAtDate = spaceship.BuiltAtDate;
+            vm.MaidenLaunch = spaceship.MaidenLaunch;
+            vm.Manufacturer = spaceship.Manufacturer;
+            vm.IsSpaceshipPreviouslyOwned = spaceship.IsSpaceshipPreviouslyOwned;
+            vm.FullTripsCount = spaceship.FullTripsCount;
+            vm.Type = spaceship.Type;
+            vm.EnginePower = spaceship.EnginePower;
+            vm.FuelConsumptionPerDay = spaceship.FuelConsumptionPerDay;
+            vm.MaintenanceCount = spaceship.MaintenanceCount;
+            vm.LastMaintenance = spaceship.LastMaintenance;
+            vm.CreatedAt = spaceship.CreatedAt;
+            vm.ModifiedAt = spaceship.ModifiedAt;
+            vm.Image.AddRange(photos);
             return View("CreateUpdate", vm);
         }
         [HttpPost]
@@ -147,7 +150,15 @@ namespace TARpe21ShopVaitmaa.Controllers
                 MaintenanceCount = vm.MaintenanceCount,
                 LastMaintenance = vm.LastMaintenance,
                 CreatedAt = vm.CreatedAt,
-                ModifiedAt = vm.ModifiedAt
+                ModifiedAt = vm.ModifiedAt,
+                Files = vm.Files,
+                Image = vm.Image.Select(x => new FileToDatabaseDto
+                {
+                    ID = x.ImageId,
+                    ImageData = x.ImageData,
+                    ImageTitle = x.ImageTitle,
+                    SpaceshipId = x.SpaceshipId,
+                }).ToArray()
             };
             var result = await _spaceshipsServices.Update(dto);
             if (result == null)
@@ -158,70 +169,89 @@ namespace TARpe21ShopVaitmaa.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(Guid Id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            var spaceship = await _spaceshipsServices.GetAsync(Id);
-
+            var spaceship = await _spaceshipsServices.GetAsync(id);
             if (spaceship == null)
             {
                 return NotFound();
             }
+            var photos = await _context.FilesToDatabase
+               .Where(x => x.SpaceshipId == id)
+               .Select(y => new ImageViewModel
+               {
+                   SpaceshipId = y.Id,
+                   ImageId = y.Id,
+                   ImageData = y.ImageData,
+                   ImageTitle = y.ImageTitle,
+                   Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
+               }).ToArrayAsync();
 
-            var vm = new SpaceshipDetailsViewModel()
-            {
-                Id = spaceship.Id,
-                Name = spaceship.Name,
-                Description = spaceship.Description,
-                PassengerCount = spaceship.PassengerCount,
-                CrewCount = spaceship.CrewCount,
-                CargoWeight = spaceship.CargoWeight,
-                MaxSpeedInVaccuum = spaceship.MaxSpeedInVaccuum,
-                BuiltAtDate = spaceship.BuiltAtDate,
-                MaidenLaunch = spaceship.MaidenLaunch,
-                Manufacturer = spaceship.Manufacturer,
-                IsSpaceshipPreviouslyOwned = spaceship.IsSpaceshipPreviouslyOwned,
-                FullTripsCount = spaceship.FullTripsCount,
-                Type = spaceship.Type,
-                EnginePower = spaceship.EnginePower,
-                FuelConsumptionPerDay = spaceship.FuelConsumptionPerDay,
-                MaintenanceCount = spaceship.MaintenanceCount,
-                LastMaintenance = spaceship.LastMaintenance,
-                CreatedAt = spaceship.CreatedAt,
-                ModifiedAt = spaceship.ModifiedAt
-            };
+            var vm = new SpaceshipDetailsViewModel();
+            vm.Id = spaceship.Id;
+            vm.Name = spaceship.Name;
+            vm.Description = spaceship.Description;
+            vm.PassengerCount = spaceship.PassengerCount;
+            vm.CrewCount = spaceship.CrewCount;
+            vm.CargoWeight = spaceship.CargoWeight;
+            vm.MaxSpeedInVaccuum = spaceship.MaxSpeedInVaccuum;
+            vm.BuiltAtDate = spaceship.BuiltAtDate;
+            vm.MaidenLaunch = spaceship.MaidenLaunch;
+            vm.Manufacturer = spaceship.Manufacturer;
+            vm.IsSpaceshipPreviouslyOwned = spaceship.IsSpaceshipPreviouslyOwned;
+            vm.FullTripsCount = spaceship.FullTripsCount;
+            vm.Type = spaceship.Type;
+            vm.EnginePower = spaceship.EnginePower;
+            vm.FuelConsumptionPerDay = spaceship.FuelConsumptionPerDay;
+            vm.MaintenanceCount = spaceship.MaintenanceCount;
+            vm.LastMaintenance = spaceship.LastMaintenance;
+            vm.CreatedAt = spaceship.CreatedAt;
+            vm.ModifiedAt = spaceship.ModifiedAt;
+            vm.Image.AddRange(photos);
             return View(vm);
         }
         [HttpGet]
-        public async Task<IActionResult> Delete(Guid Id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            var spaceship = await _spaceshipsServices.GetAsync(Id);
+
+            var spaceship = await _spaceshipsServices.GetAsync(id);
 
             if (spaceship == null)
             {
                 return NotFound();
             }
-            var vm = new SpaceshipDeleteViewModel()
-            {
-                Id = spaceship.Id,
-                Name = spaceship.Name,
-                Description = spaceship.Description,
-                PassengerCount = spaceship.PassengerCount,
-                CrewCount = spaceship.CrewCount,
-                CargoWeight = spaceship.CargoWeight,
-                MaxSpeedInVaccuum = spaceship.MaxSpeedInVaccuum,
-                BuiltAtDate = spaceship.BuiltAtDate,
-                MaidenLaunch = spaceship.MaidenLaunch,
-                Manufacturer = spaceship.Manufacturer,
-                IsSpaceshipPreviouslyOwned = spaceship.IsSpaceshipPreviouslyOwned,
-                FullTripsCount = spaceship.FullTripsCount,
-                Type = spaceship.Type,
-                EnginePower = spaceship.EnginePower,
-                FuelConsumptionPerDay = spaceship.FuelConsumptionPerDay,
-                MaintenanceCount = spaceship.MaintenanceCount,
-                LastMaintenance = spaceship.LastMaintenance,
-                CreatedAt = spaceship.CreatedAt,
-                ModifiedAt = spaceship.ModifiedAt
-            };
+
+            var photos = await _context.FilesToDatabase
+               .Where(x => x.SpaceshipId == id)
+               .Select(y => new ImageViewModel
+               {
+                   SpaceshipId = y.Id,
+                   ImageId = y.Id,
+                   ImageData = y.ImageData,
+                   ImageTitle = y.ImageTitle,
+                   Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
+               }).ToArrayAsync();
+            var vm = new SpaceshipDeleteViewModel();
+            vm.Id = spaceship.Id;
+            vm.Name = spaceship.Name;
+            vm.Description = spaceship.Description;
+            vm.PassengerCount = spaceship.PassengerCount;
+            vm.CrewCount = spaceship.CrewCount;
+            vm.CargoWeight = spaceship.CargoWeight;
+            vm.MaxSpeedInVaccuum = spaceship.MaxSpeedInVaccuum;
+            vm.BuiltAtDate = spaceship.BuiltAtDate;
+            vm.MaidenLaunch = spaceship.MaidenLaunch;
+            vm.Manufacturer = spaceship.Manufacturer;
+            vm.IsSpaceshipPreviouslyOwned = spaceship.IsSpaceshipPreviouslyOwned;
+            vm.FullTripsCount = spaceship.FullTripsCount;
+            vm.Type = spaceship.Type;
+            vm.EnginePower = spaceship.EnginePower;
+            vm.FuelConsumptionPerDay = spaceship.FuelConsumptionPerDay;
+            vm.MaintenanceCount = spaceship.MaintenanceCount;
+            vm.LastMaintenance = spaceship.LastMaintenance;
+            vm.CreatedAt = spaceship.CreatedAt;
+            vm.ModifiedAt = spaceship.ModifiedAt;
+            vm.Image.AddRange(photos);
             return View(vm);
         }
         [HttpPost]
@@ -229,6 +259,21 @@ namespace TARpe21ShopVaitmaa.Controllers
         {
             var spaceshipId = await _spaceshipsServices.Delete(Id);
             if (spaceshipId == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveImage(ImageViewModel file)
+        {
+            var dto = new FileToDatabaseDto()
+            {
+                ID = file.ImageId
+            };
+            var image = await _filesServices.RemoveImage(dto);
+            if (image == null)
             {
                 return RedirectToAction(nameof(Index));
             }
