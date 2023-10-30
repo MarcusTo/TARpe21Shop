@@ -50,7 +50,7 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
             realEstate.DoesHaveParkingSpace = dto.DoesHaveParkingSpace;
             realEstate.DoesHavePowerGridConnection = dto.DoesHavePowerGridConnection;
             realEstate.DoesHaveWaterGridConnection = dto.DoesHaveWaterGridConnection;
-            realEstate.EstateType = (Core.Domain.EstateType)dto.EstateType;
+            realEstate.Type = dto.Type;
             realEstate.IsPropertyNewDevelopment = dto.IsPropertyNewDevelopment;
             realEstate.IsPropertySold = dto.IsPropertySold;
             realEstate.CreatedAt = DateTime.Now;

@@ -68,8 +68,9 @@ namespace TARpe21ShopVaitmaa.Controllers
                 DoesHaveParkingSpace = vm.DoesHaveParkingSpace,
                 DoesHavePowerGridConnection = vm.DoesHavePowerGridConnection,
                 DoesHaveWaterGridConnection = vm.DoesHaveWaterGridConnection,
-                EstateType = (Core.Dto.EstateType)vm.EstateType
+                Type = vm.Type
             };
+            return View(dto);
         }
     }
 }

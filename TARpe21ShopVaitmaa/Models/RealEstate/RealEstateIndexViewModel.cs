@@ -1,9 +1,5 @@
 ﻿namespace TARpe21ShopVaitmaa.Models.RealEstate
 {
-    public enum EstateType
-    {
-        House, Apartment, Room, Land, ParkingSpace, TimeShare, Garage, StorageUnit, Mansion, Castle, Station
-    }
     public class RealEstateIndexViewModel
     {
 
@@ -31,13 +27,11 @@
         {
             get { return Price / SquareMeters; }
         }
-        public EstateType Type { get; set; } //what type of an estate is thiss
+        public string Type { get; set; } //what type of an estate is this
 
         public bool IsPropertyNewDevelopment { get; set; } //shows if the estate being sold is a newly developed housing unit, or an older existing one
         public bool IsPropertySold { get; set; } //shows if the property has been sold already 
-
         //database only properties
-
         public DateTime CreatedAt { get; set; } //when entry was added to the database
         public DateTime ModifiedAt { get; set; } //when wwas entry modified in the database
     }
