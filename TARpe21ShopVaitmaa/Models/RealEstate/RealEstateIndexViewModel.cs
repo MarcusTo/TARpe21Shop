@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TARpe21ShopVaitmaa.Core.Dto
+﻿namespace TARpe21ShopVaitmaa.Models.RealEstate
 {
     public enum EstateType
     {
         House, Apartment, Room, Land, ParkingSpace, TimeShare, Garage, StorageUnit, Mansion, Castle, Station
     }
-
-    public class RealEstateDto
+    public class RealEstateIndexViewModel
     {
+
         public Guid Id { get; set; } // unique id
         public string Address { get; set; } // street name, house number, flat number.  "Tulika 14-6"
         public string? City { get; set; } //city where realestate is, city is optional incase the 

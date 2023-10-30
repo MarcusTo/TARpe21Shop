@@ -15,6 +15,8 @@ namespace TARpe21ShopVaitmaa.Core.Domain
         public Guid Id { get; set; } // unique id
         public string Address { get; set; } // street name, house number, flat number.  "Tulika 14-6"
         public string? City { get; set; } //city where realestate is, city is optional incase the 
+
+        public string Country { get; set; } //what country estate is in
         public string County { get; set; } // county where the realestate is
         public int PostalCode { get; set; } //postal code for the address
         public int PhoneNumber { get; set; } //phonenumber to call about the property
