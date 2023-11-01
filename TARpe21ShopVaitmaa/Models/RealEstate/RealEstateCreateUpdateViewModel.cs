@@ -6,6 +6,11 @@
     }
     public class RealEstateCreateUpdateViewModel
     {
+
+        public enum EstateType
+        {
+            House, Apartment, Room, Land, ParkingSpace, TimeShare, Garage, StorageUnit, Mansion, Castle, Station
+        }
         public Guid? Id { get; set; } // unique id
         public string Address { get; set; } // street name, house number, flat number.  "Tulika 14-6"
         public string? City { get; set; } //city where realestate is, city is optional incase the 
