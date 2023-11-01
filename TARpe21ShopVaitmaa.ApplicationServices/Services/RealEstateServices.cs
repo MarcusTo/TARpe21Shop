@@ -8,7 +8,6 @@ using TARpe21ShopVaitmaa.Core.Domain;
 using TARpe21ShopVaitmaa.Core.Dto;
 using TARpe21ShopVaitmaa.Core.ServiceInterface;
 using TARpe21ShopVaitmaa.Data;
-
 namespace TARpe21ShopVaitmaa.ApplicationServices.Services
 {
     public class RealEstatesServices : IRealEstatesServices
@@ -18,23 +17,15 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
         public RealEstatesServices
             (
             TARpe21ShopVaitmaaContext context,
-            IFilesServices fileServices
+            IFilesServices filesServices
             )
         {
             _context = context;
-            _filesServices = fileServices;
-        }
-
-        public async Task<RealEstate> GetAsync()
-        {
-            //var result = await _context.RealEstates
-            //    .FirstOrDefaultAsync(x => x.Id == id);
-            return null;
+            _filesServices = filesServices;
         }
         public async Task<RealEstate> Create(RealEstateDto dto)
         {
             RealEstate realEstate = new();
-
             realEstate.Id = Guid.NewGuid();
             realEstate.Address = dto.Address;
             realEstate.City = dto.City;
@@ -60,6 +51,7 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
             realEstate.CreatedAt = DateTime.Now;
             realEstate.ModifiedAt = DateTime.Now;
             _filesServices.FilesToApi(dto, realEstate);
+
 
             await _context.RealEstates.AddAsync(realEstate);
             await _context.SaveChangesAsync();
@@ -99,20 +91,18 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
                 Type = dto.Type,
                 IsPropertyNewDevelopment = dto.IsPropertyNewDevelopment,
                 IsPropertySold = dto.IsPropertySold,
-                CreatedAt = DateTime.Now,
+                CreatedAt = dto.CreatedAt,
                 ModifiedAt = DateTime.Now,
             };
-            _context.RealEstates.Update(domain)
+            _context.RealEstates.Update(domain);
             await _context.SaveChangesAsync();
             return domain;
         }
-
-        public async Task<RealEstate>GetAsync(Guid id)
+        public async Task<RealEstate> GetAsync(Guid id)
         {
             var result = await _context.RealEstates
                 .FirstOrDefaultAsync(x => x.Id == id);
             return result;
         }
-        
     }
 }

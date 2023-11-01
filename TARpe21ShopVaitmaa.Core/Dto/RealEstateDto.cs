@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,6 +43,7 @@ namespace TARpe21ShopVaitmaa.Core.Dto
         public bool IsPropertyNewDevelopment { get; set; } //shows if the estate being sold is a newly developed housing unit, or an older existing one
         public bool IsPropertySold { get; set; } //shows if the property has been sold already 
 
+        public List<IFormFile> Files { get; set; }
         public IEnumerable<FileToApiDto> FilesToApiDtos { get; set; } = new List<FileToApiDto>();
 
         //database only properties

@@ -1,23 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using TARpe21ShopVaitmaa.Core.Domain;
 using TARpe21ShopVaitmaa.Core.Dto;
 using TARpe21ShopVaitmaa.Data;
+
 namespace TARpe21ShopVaitmaa.ApplicationServices.Services
 {
     public class FilesServices : IFilesServices
     {
         private readonly TARpe21ShopVaitmaaContext _context;
+        private readonly IHostingEnvironment _webHost;
         public FilesServices
             (
-                TARpe21ShopVaitmaaContext context
+                TARpe21ShopVaitmaaContext context,
+                IHostingEnvironment webHost
             )
         {
             _context = context;
+            _webHost = webHost;
         }
         public void UploadFilesToDatabase(SpaceshipDto dto, Spaceship domain)
         {
@@ -33,8 +33,10 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
                             ImageTitle = photo.FileName,
                             SpaceshipId = domain.Id,
                         };
+
                         photo.CopyTo(target);
                         files.ImageData = target.ToArray();
+
                         _context.FilesToDatabase.Add(files);
                     }
                 }
@@ -61,32 +63,32 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
             }
             return null;
         }
+
         public void FilesToApi(RealEstateDto dto, RealEstate realEstate)
         {
             if (dto.Files != null && dto.Files.Count > 0)
             {
-                if (!Directory.Exists(_webHost.webRootPath  + "\\multipleFileUpload\\"))
+                if (!Directory.Exists(_webHost.WebRootPath + "\\multipleFileUpload\\"))
                 {
                     Directory.CreateDirectory(_webHost.WebRootPath + "\\multipleFileUpload\\");
                 }
                 foreach (var image in dto.Files)
                 {
                     string uploadsFolder = Path.Combine(_webHost.WebRootPath, "multipleFileUpload");
-                    string uniqueFileName = Guid.NewGuid().ToString() +"_"+ image.FileName;
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + image.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                    using(var fileStream = new FileStream(filePath, FileMode.Create))
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
                         image.CopyTo(fileStream);
                         FileToApi path = new FileToApi
                         {
                             Id = Guid.NewGuid(),
                             ExistingFilePath = filePath,
-                            RealEstate = realEstate.Id,
+                            RealEstateId = realEstate.Id,
                         };
                         _context.FilesToApi.AddAsync(path);
                     }
                 }
-
             }
         }
     }
