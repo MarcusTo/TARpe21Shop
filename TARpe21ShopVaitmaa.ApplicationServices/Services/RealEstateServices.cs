@@ -26,6 +26,7 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
         public async Task<RealEstate> Create(RealEstateDto dto)
         {
             RealEstate realEstate = new();
+
             realEstate.Id = Guid.NewGuid();
             realEstate.Address = dto.Address;
             realEstate.City = dto.City;
@@ -60,43 +61,54 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
         public async Task<RealEstate> Delete(Guid id)
         {
             var realEstateId = await _context.RealEstates
+                .Include(x => x.FilesToApi)
                 .FirstOrDefaultAsync(x => x.Id == id);
+            var images = await _context.FilesToApi
+                .Where(x => x.RealEstateId == id)
+                .Select(y => new FileToApiDto
+                {
+                    Id = y.Id,
+                    RealEstateId = y.RealEstateId,
+                    ExistingFilePath = y.ExistingFilePath
+                }).ToArrayAsync();
+            await _filesServices.RemoveImagesFromApi(images);
             _context.RealEstates.Remove(realEstateId);
             await _context.SaveChangesAsync();
             return realEstateId;
         }
         public async Task<RealEstate> Update(RealEstateDto dto)
         {
-            var domain = new RealEstate()
-            {
-                Id = Guid.NewGuid(),
-                Address = dto.Address,
-                City = dto.City,
-                Country = dto.Country,
-                County = dto.County,
-                PostalCode = dto.PostalCode,
-                PhoneNumber = dto.PhoneNumber,
-                FaxNumber = dto.FaxNumber,
-                ListingDescription = dto.ListingDescription,
-                SquareMeters = dto.SquareMeters,
-                BuildDate = dto.BuildDate,
-                Price = dto.Price,
-                RoomCount = dto.RoomCount,
-                EstateFloor = dto.EstateFloor,
-                Bathrooms = dto.Bathrooms,
-                Bedrooms = dto.Bedrooms,
-                DoesHaveParkingSpace = dto.DoesHaveParkingSpace,
-                DoesHavePowerGridConnection = dto.DoesHavePowerGridConnection,
-                DoesHaveWaterGridConnection = dto.DoesHaveWaterGridConnection,
-                Type = dto.Type,
-                IsPropertyNewDevelopment = dto.IsPropertyNewDevelopment,
-                IsPropertySold = dto.IsPropertySold,
-                CreatedAt = dto.CreatedAt,
-                ModifiedAt = DateTime.Now,
-            };
-            _context.RealEstates.Update(domain);
+            RealEstate realEstate = new ();
+
+            realEstate.Id = dto.Id;
+            realEstate.Id = Guid.NewGuid();
+            realEstate.Address = dto.Address;
+            realEstate.City = dto.City;
+            realEstate.Country = dto.Country;
+            realEstate.County = dto.County;
+            realEstate.PostalCode = dto.PostalCode;
+            realEstate.PhoneNumber = dto.PhoneNumber;
+            realEstate.FaxNumber = dto.FaxNumber;
+            realEstate.ListingDescription = dto.ListingDescription;
+            realEstate.SquareMeters = dto.SquareMeters;
+            realEstate.BuildDate = dto.BuildDate;
+            realEstate.Price = dto.Price;
+            realEstate.RoomCount = dto.RoomCount;
+            realEstate.EstateFloor = dto.EstateFloor;
+            realEstate.Bathrooms = dto.Bathrooms;
+            realEstate.Bedrooms = dto.Bedrooms;
+            realEstate.DoesHaveParkingSpace = dto.DoesHaveParkingSpace;
+            realEstate.DoesHavePowerGridConnection = dto.DoesHavePowerGridConnection;
+            realEstate.DoesHaveWaterGridConnection = dto.DoesHaveWaterGridConnection;
+            realEstate.Type = dto.Type;
+            realEstate.IsPropertyNewDevelopment = dto.IsPropertyNewDevelopment;
+            realEstate.IsPropertySold = dto.IsPropertySold;
+            realEstate.CreatedAt = DateTime.Now;
+            realEstate.ModifiedAt = DateTime.Now;
+
+            _context.RealEstates.Update(realEstate);
             await _context.SaveChangesAsync();
-            return domain;
+            return realEstate;
         }
         public async Task<RealEstate> GetAsync(Guid id)
         {

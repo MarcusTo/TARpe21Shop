@@ -30,6 +30,7 @@
         public string Type { get; set; } //what type of an estate is this
         public bool IsPropertyNewDevelopment { get; set; } //shows if the estate being sold is a newly developed housing unit, or an older existing one
         public bool IsPropertySold { get; set; } //shows if the property has been sold already 
+
         //database only properties
         public DateTime CreatedAt { get; set; } //when entry was added to the database
         public DateTime ModifiedAt { get; set; } //when wwas entry modified in the database

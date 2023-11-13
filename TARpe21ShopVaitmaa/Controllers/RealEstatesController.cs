@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Metrics;
 using System.Net;
+using TARpe21ShopVaitmaa.ApplicationServices.Services;
 using TARpe21ShopVaitmaa.Core.Dto;
 using TARpe21ShopVaitmaa.Core.ServiceInterface;
 using TARpe21ShopVaitmaa.Data;
@@ -13,14 +14,17 @@ namespace TARpe21ShopVaitmaa.Controllers
     {
         private readonly IRealEstatesServices _realEstates;
         private readonly TARpe21ShopVaitmaaContext _context;
+        private readonly IFilesServices _filesServices;
         public RealEstatesController
             (
             IRealEstatesServices realEstates,
-            TARpe21ShopVaitmaaContext context
+            TARpe21ShopVaitmaaContext context,
+            IFilesServices filesServices
             )
         {
             _realEstates = realEstates;
             _context = context;
+            _filesServices = filesServices;
         }
         [HttpGet]
         public IActionResult Index()
@@ -218,7 +222,7 @@ namespace TARpe21ShopVaitmaa.Controllers
             vm.IsPropertySold = realEstate.IsPropertySold;
             vm.CreatedAt = realEstate.CreatedAt;
             vm.ModifiedAt = realEstate.ModifiedAt;
-            vm.FileToApiViewModel.AddRange(images);
+            vm.FileToApiViewModels.AddRange(images);
 
             return View(vm);
         }
@@ -269,6 +273,20 @@ namespace TARpe21ShopVaitmaa.Controllers
             }
             return RedirectToAction(nameof(Index));
 
+        }
+        [HttpPost]
+        public async Task<IActionResult>RemoveImage(FileToApiViewModel vm)
+        {
+            var dto = new FileToApiDto()
+            {
+                Id = vm.ImageId
+            };
+            var image = await _filesServices.RemoveImageFromApi(dto);
+            if (image == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }

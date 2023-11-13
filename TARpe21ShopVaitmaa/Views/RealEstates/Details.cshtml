@@ -135,6 +135,11 @@
             @Html.DisplayFor(model => model.CreatedAt)
         </div>
 
+        @foreach (var images in Model.FileToApiViewModels)
+        {
+            <partial name="_Images" model="images" />
+        }
+
     </dl>
     <a asp-action="Index" asp-controller="realEstates" class="btn btn-primary">Back</a>
 </div>
