@@ -11,6 +11,7 @@ namespace TARpe21ShopVaitmaa.Data
     {
         public TARpe21ShopVaitmaaContext(DbContextOptions<TARpe21ShopVaitmaaContext> options) : base(options) { }
         public DbSet<Spaceship> Spaceships { get; set; }
+        public DbSet<Car> Cars { get; set; }
         public DbSet<FileToDatabase> FilesToDatabase { get; set; }
         public DbSet<RealEstate> RealEstates { get; set; }
         public DbSet<FileToApi> FilesToApi { get; set; }

@@ -11,6 +11,7 @@ builder.Services.AddDbContext<TARpe21ShopVaitmaaContext>(options => options.UseS
 builder.Services.AddScoped<ISpaceshipsServices, SpaceshipsServices>();
 builder.Services.AddScoped<IFilesServices, FilesServices>();
 builder.Services.AddScoped<IRealEstatesServices, RealEstatesServices>();
+builder.Services.AddScoped<ICarServices, CarServices>();
 
 var app = builder.Build();
 

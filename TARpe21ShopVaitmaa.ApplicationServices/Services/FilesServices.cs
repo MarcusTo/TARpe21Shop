@@ -3,9 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using TARpe21ShopVaitmaa.Core.Domain;
 using TARpe21ShopVaitmaa.Core.Dto;
 using TARpe21ShopVaitmaa.Data;
+using TARpe21ShopVaitmaa.Data.Migrations;
+using TARpe21ShopVaitmaa.ApplicationServices.Services;
+
 
 namespace TARpe21ShopVaitmaa.ApplicationServices.Services
 {
+    
     public class FilesServices : IFilesServices
     {
         private readonly TARpe21ShopVaitmaaContext _context;
@@ -19,6 +23,7 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
             _context = context;
             _webHost = webHost;
         }
+
         public void UploadFilesToDatabase(SpaceshipDto dto, Spaceship domain)
         {
             if (dto.Files != null && dto.Files.Count > 0)
@@ -33,10 +38,8 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
                             ImageTitle = photo.FileName,
                             SpaceshipId = domain.Id,
                         };
-
                         photo.CopyTo(target);
                         files.ImageData = target.ToArray();
-
                         _context.FilesToDatabase.Add(files);
                     }
                 }
@@ -51,7 +54,7 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
             await _context.SaveChangesAsync();
             return image;
         }
-        public async Task<List<FileToDatabase>> RemoveImagesFromDatabase(FileToDatabaseDto[] dtos)
+        public async Task<List<FileToDatabase>> RemoveImageFromDatabase(FileToDatabaseDto[] dtos)
         {
             foreach (var dto in dtos)
             {
@@ -84,7 +87,7 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
                         FileToApi path = new FileToApi
                         {
                             Id = Guid.NewGuid(),
-                            ExistingFilePath = filePath,
+                            ExistingFilePath = uniqueFileName,
                             RealEstateId = realEstate.Id,
                         };
                         _context.FilesToApi.AddAsync(path);
@@ -113,13 +116,47 @@ namespace TARpe21ShopVaitmaa.ApplicationServices.Services
             var imageId = await _context.FilesToApi
                 .FirstOrDefaultAsync(x => x.Id == dto.Id);
             var filePath = _webHost.WebRootPath + "\\multipleFileUpload\\" + imageId.ExistingFilePath;
-            if (File.Exists(filePath)) 
+            if (File.Exists(filePath))
             {
-                File.Delete(filePath);            
+                File.Delete(filePath);
             }
             _context.FilesToApi.Remove(imageId);
             await _context.SaveChangesAsync();
             return null;
+        }
+
+        public void FilesToApi(CarDto dto, Car car)
+        {
+            string uniqueFileName = null;
+            if (dto.Files != null && dto.Files.Count > 0)
+            {
+                if (!Directory.Exists(_webHost.WebRootPath + "\\multipleFileUpload\\"))
+                {
+                    Directory.CreateDirectory(_webHost.WebRootPath + "\\multipleFileUpload\\");
+                }
+                foreach (var image in dto.Files)
+                {
+                    string uploadsFolder = Path.Combine(_webHost.WebRootPath, "multipleFileUpload");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + image.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        image.CopyTo(fileStream);
+                        FileToApi path = new FileToApi
+                        {
+                            Id = Guid.NewGuid(),
+                            ExistingFilePath = uniqueFileName,
+                            CarId = car.Id,
+                        };
+                        _context.FilesToApi.AddAsync(path);
+                    }
+                }
+            }
+        }
+
+        public Task<List<FileToApi>> RemoveImagesFromDatabase(FileToDatabaseDto[] dtos)
+        {
+            throw new NotImplementedException();
         }
     }
 }

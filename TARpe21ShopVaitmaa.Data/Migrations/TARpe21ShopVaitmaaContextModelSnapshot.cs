@@ -22,10 +22,60 @@ namespace TARpe21ShopVaitmaa.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("TARpe21ShopVaitmaa.Core.Domain.Car", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CarBrand")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CarPassengerCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarPrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarWeight")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("HorsePower")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TopSpeed")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TransmissionType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("YearMade")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cars");
+                });
+
             modelBuilder.Entity("TARpe21ShopVaitmaa.Core.Domain.FileToApi", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CarId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ExistingFilePath")
@@ -46,6 +96,9 @@ namespace TARpe21ShopVaitmaa.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CarId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<byte[]>("ImageData")
@@ -221,11 +274,46 @@ namespace TARpe21ShopVaitmaa.Data.Migrations
                     b.ToTable("Spaceships");
                 });
 
+            modelBuilder.Entity("TARpe21ShopVaitmaa.Core.Dto.FileToApiDto", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CarId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ExistingFilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("RealEstateId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("FileToApiDto");
+                });
+
             modelBuilder.Entity("TARpe21ShopVaitmaa.Core.Domain.FileToApi", b =>
                 {
                     b.HasOne("TARpe21ShopVaitmaa.Core.Domain.RealEstate", null)
                         .WithMany("FilesToApi")
                         .HasForeignKey("RealEstateId");
+                });
+
+            modelBuilder.Entity("TARpe21ShopVaitmaa.Core.Dto.FileToApiDto", b =>
+                {
+                    b.HasOne("TARpe21ShopVaitmaa.Core.Domain.Car", null)
+                        .WithMany("FileToApiDtos")
+                        .HasForeignKey("CarId");
+                });
+
+            modelBuilder.Entity("TARpe21ShopVaitmaa.Core.Domain.Car", b =>
+                {
+                    b.Navigation("FileToApiDtos");
                 });
 
             modelBuilder.Entity("TARpe21ShopVaitmaa.Core.Domain.RealEstate", b =>
