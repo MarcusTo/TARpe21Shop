@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "evS7jGmkRVz4Ez2qSlVPz1fVWfaB0iwaCSbKvhs2LP0=",
+  "Hash": "NEDg0Iur9tOwrdEKMklOSLiE6q6sPyteukkjxsQM6Mk=",
   "Source": "TARpe21ShopVaitmaa",
   "BasePath": "_content/TARpe21ShopVaitmaa",
   "Mode": "Default",
@@ -1069,6 +1069,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\opilane\\source\\repos\\TARpe21Shop\\TARpe21ShopVaitmaa\\wwwroot\\multipleFileUpload\\5ceca665-472d-4639-961d-3ee3df8944d1_Nimetu.png",
+      "SourceId": "TARpe21ShopVaitmaa",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\opilane\\source\\repos\\TARpe21Shop\\TARpe21ShopVaitmaa\\wwwroot\\",
+      "BasePath": "_content/TARpe21ShopVaitmaa",
+      "RelativePath": "multipleFileUpload/5ceca665-472d-4639-961d-3ee3df8944d1_Nimetu.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\multipleFileUpload\\5ceca665-472d-4639-961d-3ee3df8944d1_Nimetu.png"
+    },
+    {
+      "Identity": "C:\\Users\\opilane\\source\\repos\\TARpe21Shop\\TARpe21ShopVaitmaa\\wwwroot\\multipleFileUpload\\ce265ea4-dad9-46f3-a5bb-7238c4b7cb5e_Nimetu.png",
+      "SourceId": "TARpe21ShopVaitmaa",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\opilane\\source\\repos\\TARpe21Shop\\TARpe21ShopVaitmaa\\wwwroot\\",
+      "BasePath": "_content/TARpe21ShopVaitmaa",
+      "RelativePath": "multipleFileUpload/ce265ea4-dad9-46f3-a5bb-7238c4b7cb5e_Nimetu.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\multipleFileUpload\\ce265ea4-dad9-46f3-a5bb-7238c4b7cb5e_Nimetu.png"
     }
   ]
 }

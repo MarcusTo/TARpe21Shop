@@ -245,6 +245,14 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Users\\opilane\\source\\repos\\TARpe21Shop\\TARpe21ShopVaitmaa\\wwwroot\\multipleFileUpload\\5ceca665-472d-4639-961d-3ee3df8944d1_Nimetu.png",
+      "PackagePath": "staticwebassets\\multipleFileUpload\\5ceca665-472d-4639-961d-3ee3df8944d1_Nimetu.png"
+    },
+    {
+      "Id": "C:\\Users\\opilane\\source\\repos\\TARpe21Shop\\TARpe21ShopVaitmaa\\wwwroot\\multipleFileUpload\\ce265ea4-dad9-46f3-a5bb-7238c4b7cb5e_Nimetu.png",
+      "PackagePath": "staticwebassets\\multipleFileUpload\\ce265ea4-dad9-46f3-a5bb-7238c4b7cb5e_Nimetu.png"
+    },
+    {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.TARpe21ShopVaitmaa.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

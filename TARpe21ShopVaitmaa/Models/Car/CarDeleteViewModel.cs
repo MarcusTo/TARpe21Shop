@@ -22,7 +22,7 @@ namespace TARpe21ShopVaitmaa.Models.Car
         public List<FileToApiViewM> FileToApiViewModels { get; set; } = new List<FileToApiViewM>(); //file viewmodels
         public List<ImageViewModel> Image { get; set; } = new List<ImageViewModel>(); // images themselves that are added
 
-        public IEnumerable<FileToApiDto> FileToApiDtos { get; set; } = new List<FileToApiDto>(); //file viewmodels
+        public List<FileToApiDto> FileToApiDtos { get; set; } = new List<FileToApiDto>(); //file viewmodels
 
         //database only properties
         public DateTime CreatedAt { get; set; } //when entry was added to the database

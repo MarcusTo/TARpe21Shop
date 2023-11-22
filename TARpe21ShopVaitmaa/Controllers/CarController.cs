@@ -105,8 +105,9 @@ namespace TARpe21ShopVaitmaa.Controllers
             vm.TopSpeed = car.TopSpeed;
             vm.CarWeight = car.CarWeight;
             vm.TransmissionType = car.TransmissionType;
+            vm.FileToApiViewModels.AddRange(images);
 
-          
+
             return View("CreateUpdate", vm);
         }
         [HttpPost]
@@ -123,6 +124,8 @@ namespace TARpe21ShopVaitmaa.Controllers
                 TopSpeed = vm.TopSpeed,
                 CarWeight = vm.CarWeight,
                 TransmissionType = vm.TransmissionType,
+                CreatedAt = vm.CreatedAt,
+                ModifiedAt = DateTime.Now,
                 Files = vm.Files,
                 FileToApiDtos = vm.FileToApiViewModels
                 .Select(x => new FileToApiDto
@@ -182,6 +185,17 @@ namespace TARpe21ShopVaitmaa.Controllers
                 return NotFound();
             }
 
+            var images = await _context.FilesToApi
+                .Where(x => x.Id == id)
+                .Select(y => new FileToApiViewM
+                {
+                    FilePath = y.ExistingFilePath,
+                    ImageId = y.Id,
+
+                }).ToArrayAsync();
+
+                
+
             var vm = new CarDeleteViewModel();
 
             vm.Id = car.Id;
@@ -193,9 +207,11 @@ namespace TARpe21ShopVaitmaa.Controllers
             vm.TopSpeed = car.TopSpeed;
             vm.CarWeight = car.CarWeight;
             vm.TransmissionType = car.TransmissionType;
+            vm.FileToApiViewModels.AddRange(images);
 
             return View(vm);
         }
+
         [HttpPost]
         public async Task<IActionResult> DeleteConfirmation(Guid id)
         {

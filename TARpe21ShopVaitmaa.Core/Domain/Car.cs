@@ -21,7 +21,7 @@ namespace TARpe21ShopVaitmaa.Core.Domain
         public int TopSpeed { get; set; }
         public int CarPassengerCount { get; set; } //total room count in the estate
         public string TransmissionType { get; set; } //what type of an estate is this
-        public IEnumerable<FileToApiDto> FileToApiDtos { get; set; } = new List<FileToApiDto>(); //file viewmodels
+        public IEnumerable<FileToApi> FilesToApi { get; set; } = new List<FileToApi>(); //file viewmodels
 
 
 
