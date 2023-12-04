@@ -12,7 +12,7 @@ namespace TARpe21ShopVaitmaa.Models.Car
         public Guid? Id { get; set; } // unique id
         public string CarBrand { get; set; }
         public string Description { get; set; }
-        public DateTime YearMade { get; set; } //city where realestate is, city is optional incase the 
+        public int YearMade { get; set; } //city where realestate is, city is optional incase the 
         public int HorsePower { get; set; } //postal code for the address
         public int CarPrice { get; set; } // to call about the property
         public int CarWeight { get; set; }

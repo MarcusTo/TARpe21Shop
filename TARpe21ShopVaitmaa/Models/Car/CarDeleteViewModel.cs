@@ -12,7 +12,7 @@ namespace TARpe21ShopVaitmaa.Models.Car
         public Guid? Id { get; set; } // unique id
         public string CarBrand { get; set; }
         public string Description { get; set; }
-        public DateTime YearMade { get; set; } 
+        public int YearMade { get; set; } 
         public int HorsePower { get; set; } 
         public int CarPrice { get; set; } 
         public int CarWeight { get; set; }

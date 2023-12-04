@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.25" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+    <PackageReference Include="xunit.assert" Version="2.6.2" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TARpe21ShopVaitmaa.Core\TARpe21ShopVaitmaa.Core.csproj" />
+    <ProjectReference Include="..\TARpe21ShopVaitmaa.Data\TARpe21ShopVaitmaa.Data.csproj" />
+  </ItemGroup>
+
+</Project>

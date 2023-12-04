@@ -1,0 +1,5 @@
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.CarsTest\obj\Debug\net6.0\TARpe21ShopVaitmaa.CarTest.csproj.AssemblyReference.cache
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.CarsTest\obj\Debug\net6.0\TARpe21ShopVaitmaa.CarTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.CarsTest\obj\Debug\net6.0\TARpe21ShopVaitmaa.CarTest.AssemblyInfoInputs.cache
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.CarsTest\obj\Debug\net6.0\TARpe21ShopVaitmaa.CarTest.AssemblyInfo.cs
+C:\Users\opilane\source\repos\TARpe21Shop\TARpe21ShopVaitmaa.CarsTest\obj\Debug\net6.0\TARpe21ShopVaitmaa.CarTest.csproj.CoreCompileInputs.cache
